@@ -8,19 +8,19 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\DateTime;
-use Dewsign\NovaEvents\Nova\EventSlot;
+use Dewsign\NovaEvents\Nova\Event;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Event extends Resource
+class EventSlot extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'Dewsign\NovaEvents\Models\Event';
+    public static $model = 'Dewsign\NovaEvents\Models\EventSlot';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -56,7 +56,7 @@ class Event extends Resource
             DateTime::make('Start Date')->nullable(),
             DateTime::make('End Date')->nullable()->hideFromIndex(),
 
-            HasMany::make('Event Slots', 'eventSlots', EventSlot::class),
+            BelongsTo::make('Event', 'event', Event::class),
         ];
     }
 

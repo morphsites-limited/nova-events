@@ -2,7 +2,10 @@
 
 namespace Dewsign\NovaEvents\Providers;
 
+use Laravel\Nova\Nova;
 use Illuminate\Routing\Router;
+use Dewsign\NovaEvents\Nova\Event;
+use Dewsign\NovaEvents\Nova\EventSlot;
 use Illuminate\Support\ServiceProvider;
 
 class PackageServiceProvider extends ServiceProvider
@@ -29,6 +32,11 @@ class PackageServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        Nova::resources([
+            Event::class,
+            EventSlot::class,
+        ]);
+
         $this->mergeConfigFrom(
             $this->getConfigsPath(), 'nova-events'
         );
