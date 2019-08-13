@@ -1,0 +1,32 @@
+{
+    "name": "dewsign/nova-events",
+    "description": "An Events CMS for Laravel Nova",
+    "type": "package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daniel Crewdson",
+            "email": "daniel.crewdson@dewsign.co.uk"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "laravel/framework": ">=5.0.0",
+        "maxfactor/support": "^2.6"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": ">=3.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dewsign\\NovaEvents\\": "src-php/"
+        }
+    },
+    "extra":{
+        "laravel": {
+            "providers": [
+                "Dewsign\\NovaEvents\\Providers\\PackageServiceProvider"
+            ]
+        }
+    }
+}
