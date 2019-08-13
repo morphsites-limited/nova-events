@@ -1,11 +1,5 @@
-# Boilerplate repository for creating PHP Laravel and JS Vue NPM Packages
+# Nova Events
 
-This boilderplate is ready to be published to Packagist and NPM JS.
+An Events CMS for Laravel Nova.
 
-## Usage
-
-Simply fork this repository and customise. Search and Replace (case-sensitive) `Dewsign` and `NovaEvents` as well as `dewsign` and `nova-events` to get started.
-
-## Publishing
-
-Always use `npm version (major|minor|patch)` to publish new versions (even when working with PHP). This will automatically create the git tag for you which Packagist will then pick up for version publishing.
+Readme coming soon...
