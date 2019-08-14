@@ -7,6 +7,7 @@ use Illuminate\Routing\Router;
 use Dewsign\NovaEvents\Nova\Event;
 use Dewsign\NovaEvents\Nova\EventSlot;
 use Illuminate\Support\ServiceProvider;
+use Dewsign\NovaEvents\Nova\EventLocation;
 
 class PackageServiceProvider extends ServiceProvider
 {
@@ -35,6 +36,7 @@ class PackageServiceProvider extends ServiceProvider
         Nova::resources([
             Event::class,
             EventSlot::class,
+            EventLocation::class,
         ]);
 
         $this->mergeConfigFrom(
