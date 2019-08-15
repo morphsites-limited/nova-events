@@ -4,6 +4,9 @@ namespace Dewsign\NovaEvents\Models;
 
 use Maxfactor\Support\Webpage\Model;
 use Dewsign\NovaEvents\Models\EventSlot;
+use Dewsign\NovaEvents\Models\EventCategory;
+use Dewsign\NovaEvents\Models\EventLocation;
+use Dewsign\NovaEvents\Models\EventOrganiser;
 
 class Event extends Model
 {
@@ -17,5 +20,20 @@ class Event extends Model
     public function eventSlots()
     {
         return $this->hasMany(EventSlot::class);
+    }
+
+    public function location()
+    {
+        return $this->belongsTo(EventLocation::class);
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(EventCategory::class, 'nova_event_categories_nova_events', 'nova_event_id', 'nova_event_category_id');
+    }
+
+    public function organisers()
+    {
+        return $this->belongsToMany(EventOrganiser::class, 'nova_event_organisers_nova_events', 'nova_event_id', 'organiser_id');
     }
 }

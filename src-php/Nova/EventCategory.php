@@ -8,24 +8,20 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\DateTime;
-use Laravel\Nova\Fields\BelongsTo;
+use Dewsign\NovaEvents\Nova\Event;
 use Dewsign\NovaEvents\Nova\EventSlot;
 use Laravel\Nova\Fields\BelongsToMany;
-use Dewsign\NovaEvents\Nova\EventCategory;
-use Dewsign\NovaEvents\Nova\EventLocation;
-use Dewsign\NovaEvents\Nova\EventOrganiser;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Event extends Resource
+class EventCategory extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'Dewsign\NovaEvents\Models\Event';
+    public static $model = 'Dewsign\NovaEvents\Models\EventCategory';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -44,6 +40,16 @@ class Event extends Resource
     ];
 
     /**
+     * Get the displayable label of the resource
+     *
+     * @return string
+     */
+    public static  function label()
+    {
+        return __('Event Categories');
+    }
+
+    /**
      * Get the fields displayed by the resource.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -54,17 +60,9 @@ class Event extends Resource
         return [
             ID::make()->sortable(),
             Boolean::make('Active')->sortable()->rules('required', 'boolean'),
-            Number::make('Priority')->sortable()->rules('required'),
             Text::make('Title')->sortable()->rules('required', 'max:254'),
-            Text::make('Description', 'long_desc')->hideFromIndex(),
-            Text::make('Short Description', 'short_desc'),
-            DateTime::make('Start Date')->nullable(),
-            DateTime::make('End Date')->nullable()->hideFromIndex(),
 
-            BelongsTo::make('Event Location', 'location', EventLocation::class)->nullable(),
-            HasMany::make('Event Slots', 'eventSlots', EventSlot::class),
-            BelongsToMany::make('Event Categories', 'categories', EventCategory::class),
-            BelongsToMany::make('Event Organiser', 'organisers', EventOrganiser::class),
+            BelongsToMany::make('Event', 'events', Event::class),
         ];
     }
 

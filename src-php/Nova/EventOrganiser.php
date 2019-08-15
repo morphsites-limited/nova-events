@@ -8,31 +8,27 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\DateTime;
-use Laravel\Nova\Fields\BelongsTo;
+use Dewsign\NovaEvents\Nova\Event;
 use Dewsign\NovaEvents\Nova\EventSlot;
 use Laravel\Nova\Fields\BelongsToMany;
-use Dewsign\NovaEvents\Nova\EventCategory;
-use Dewsign\NovaEvents\Nova\EventLocation;
-use Dewsign\NovaEvents\Nova\EventOrganiser;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Event extends Resource
+class EventOrganiser extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'Dewsign\NovaEvents\Models\Event';
+    public static $model = 'Dewsign\NovaEvents\Models\EventOrganiser';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'title';
+    public static $title = 'name';
 
     /**
      * The columns that should be searched.
@@ -40,8 +36,18 @@ class Event extends Resource
      * @var array
      */
     public static $search = [
-        'title',
+        'name',
     ];
+
+    /**
+     * Get the displayable label of the resource
+     *
+     * @return string
+     */
+    public static  function label()
+    {
+        return __('Event Organisers');
+    }
 
     /**
      * Get the fields displayed by the resource.
@@ -54,17 +60,10 @@ class Event extends Resource
         return [
             ID::make()->sortable(),
             Boolean::make('Active')->sortable()->rules('required', 'boolean'),
-            Number::make('Priority')->sortable()->rules('required'),
-            Text::make('Title')->sortable()->rules('required', 'max:254'),
-            Text::make('Description', 'long_desc')->hideFromIndex(),
-            Text::make('Short Description', 'short_desc'),
-            DateTime::make('Start Date')->nullable(),
-            DateTime::make('End Date')->nullable()->hideFromIndex(),
-
-            BelongsTo::make('Event Location', 'location', EventLocation::class)->nullable(),
-            HasMany::make('Event Slots', 'eventSlots', EventSlot::class),
-            BelongsToMany::make('Event Categories', 'categories', EventCategory::class),
-            BelongsToMany::make('Event Organiser', 'organisers', EventOrganiser::class),
+            Text::make('Name')->sortable()->rules('required', 'max:254'),
+            Text::make('Website'),
+            Text::make('Info'),
+            BelongsToMany::make('Event', 'events', Event::class)->searchable(),
         ];
     }
 
