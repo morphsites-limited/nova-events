@@ -65,7 +65,7 @@ class EventSlot extends Resource
             Text::make('Short Description', 'short_desc'),
             DateTime::make('Start Date')->nullable(),
             DateTime::make('End Date')->nullable()->hideFromIndex(),
-
+            BelongsTo::make('Event Location', 'location', EventLocation::class)->nullable(),
             BelongsTo::make('Event', 'event', Event::class),
         ];
     }

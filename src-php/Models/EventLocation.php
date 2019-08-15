@@ -10,13 +10,13 @@ class EventLocation extends Model
 {
     protected $table = 'nova_event_locations';
 
-    public function event()
+    public function events()
     {
-        return $this->belongsTo(Event::class);
+        return $this->hasMany(Event::class, 'event_location_id', 'id');
     }
 
-    public function eventSlot()
+    public function eventSlots()
     {
-        return $this->belongsTo(EventSlot::class);
+        return $this->hasMany(EventSlot::class, 'event_location_id', 'id');
     }
 }

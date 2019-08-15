@@ -22,6 +22,6 @@ class EventSlot extends Model
 
     public function location()
     {
-        return $this->hasOne(EventLocation::class);
+        return $this->belongsTo(EventLocation::class, 'event_location_id');
     }
 }

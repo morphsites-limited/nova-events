@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdateNovaEventsTableAddLocationId extends Migration
+class UpdateNovaEventSlotsTableAddLocationId extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class UpdateNovaEventsTableAddLocationId extends Migration
      */
     public function up()
     {
-        Schema::table('nova_events', function (Blueprint $table) {
+        Schema::table('nova_event_slots', function (Blueprint $table) {
             $table->integer('event_location_id')->unsigned()->nullable();
             $table->foreign('event_location_id')->references('id')->on('nova_event_locations')->onDelete('cascade');
         });
@@ -26,7 +26,7 @@ class UpdateNovaEventsTableAddLocationId extends Migration
      */
     public function down()
     {
-        Schema::table('nova_events', function (Blueprint $table) {
+        Schema::table('nova_event_slots', function (Blueprint $table) {
             $table->dropColumn('event_location_id');
         });
     }

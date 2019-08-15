@@ -11,6 +11,7 @@ use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
 use Dewsign\NovaEvents\Nova\Event;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\HasMany;
 use Dewsign\NovaEvents\Nova\EventSlot;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -64,8 +65,8 @@ class EventLocation extends Resource
             Text::make('Description')->hideFromIndex(),
             Text::make('Info Page Link'),
 
-            BelongsTo::make('Event', 'event', Event::class)->nullable()->searchable(),
-            BelongsTo::make('Event Slot', 'eventSlot', EventSlot::class)->nullable()->searchable(),
+            HasMany::make('Event', 'events', Event::class),
+            HasMany::make('Event Slot', 'eventSlots', EventSlot::class),
         ];
     }
 
