@@ -21,11 +21,13 @@ class EventSeeder extends Seeder
         factory(Event::class, 15)->create();
         factory(EventLocation::class, 5)->create();
         factory(EventSlot::class, 25)->create();
-        // factory(EventOrganiser::class, 10)->create();
-        // factory(EventCategory::class, 5)->create();
+        factory(EventOrganiser::class, 10)->create();
+        factory(EventCategory::class, 5)->create();
 
         Event::all()->each(function ($event) {
             $event->event_location_id = EventLocation::inRandomOrder()->first()->id;
+            $event->categories()->attach(EventCategory::inRandomOrder()->take(rand(1, 3))->get());
+            $event->organisers()->attach(EventOrganiser::inRandomOrder()->take(rand(1, 3))->get());
             $event->save();
         });
 
