@@ -7,9 +7,12 @@ use Dewsign\NovaEvents\Models\EventSlot;
 use Dewsign\NovaEvents\Models\EventCategory;
 use Dewsign\NovaEvents\Models\EventLocation;
 use Dewsign\NovaEvents\Models\EventOrganiser;
+use Maxfactor\Support\Model\Traits\HasActiveState;
 
 class Event extends Model
 {
+    use HasActiveState;
+
     protected $table = 'nova_events';
 
     protected $dates = [

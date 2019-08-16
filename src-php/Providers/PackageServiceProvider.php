@@ -25,6 +25,7 @@ class PackageServiceProvider extends ServiceProvider
         $this->bootAssets();
         $this->bootCommands();
         $this->publishDatabaseFiles();
+        $this->registerWebRoutes();
         // $this->registerMiddleware();
     }
 
@@ -91,9 +92,9 @@ class PackageServiceProvider extends ServiceProvider
      */
     private function bootViews()
     {
-        $this->loadViewsFrom(__DIR__.'/../Resources/views', 'dewsign');
+        $this->loadViewsFrom(__DIR__.'/../Resources/views', 'nova-events');
         $this->publishes([
-            __DIR__.'/../Resources/views' => resource_path('views/vendor/dewsign'),
+            __DIR__.'/../Resources/views' => resource_path('views/vendor/nova-events'),
         ]);
     }
 
@@ -139,5 +140,15 @@ class PackageServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../Database/seeds' => base_path('database/seeds')
         ], 'seeds');
+    }
+
+    /**
+     * Load Web Routes into the application
+     *
+     * @return void
+     */
+    private function registerWebRoutes()
+    {
+        $this->loadRoutesFrom(__DIR__.'/../Routes/web.php');
     }
 }
