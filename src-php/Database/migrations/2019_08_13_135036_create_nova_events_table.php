@@ -18,8 +18,10 @@ class CreateNovaEventsTable extends Migration
             $table->active();
             $table->priority();
             $table->string('title');
-            $table->text('long_desc');
-            $table->text('short_desc');
+            $table->text('long_desc')->nullable();
+            $table->text('short_desc')->nullable();
+            $table->string('image')->nullable();
+            $table->string('image_alt')->nullable();
             $table->dateTimeTz('start_date');
             $table->dateTimeTz('end_date');
             $table->timestamps();

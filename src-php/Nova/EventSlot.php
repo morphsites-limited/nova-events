@@ -63,6 +63,8 @@ class EventSlot extends Resource
             Text::make('Title')->sortable()->rules('required', 'max:254'),
             Text::make('Description', 'long_desc')->hideFromIndex(),
             Text::make('Short Description', 'short_desc'),
+            config('nova-events.images.field')::make('Image')->disk(config('nova-events.images.disk'))->rules('nullable'),
+            Text::make('Image Alt')->rules('nullable'),
             DateTime::make('Start Date')->nullable(),
             DateTime::make('End Date')->nullable()->hideFromIndex(),
             BelongsTo::make('Event Location', 'location', EventLocation::class)->nullable(),

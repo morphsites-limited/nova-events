@@ -1,5 +1,8 @@
 <?php
 
 return [
-    'test' => 12,
+    'images' => [
+        'field' => 'Laravel\Nova\Fields\Image',
+        'disk' => 'public',
+    ],
 ];
