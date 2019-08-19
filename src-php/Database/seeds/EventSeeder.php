@@ -18,10 +18,10 @@ class EventSeeder extends Seeder
      */
     public function run()
     {
-        factory(Event::class, 15)->create();
+        factory(Event::class, 6)->create();
         factory(EventLocation::class, 5)->create();
-        factory(EventSlot::class, 25)->create();
-        factory(EventOrganiser::class, 10)->create();
+        factory(EventSlot::class, 15)->create();
+        factory(EventOrganiser::class, 4)->create();
         factory(EventCategory::class, 5)->create();
 
         Event::all()->each(function ($event) {
