@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 use Dewsign\NovaEvents\Models\EventCategory;
 
@@ -15,6 +16,7 @@ $factory->define(EventCategory::class, function (Faker $faker) {
     ];
     return [
         'active' => $faker->boolean(90),
-        'title' => $faker->unique()->randomElement($categories),
+        'title' => $title = $faker->unique()->randomElement($categories),
+        'slug' => Str::slug($title),
     ];
 });

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 use Dewsign\NovaEvents\Models\Event;
 
@@ -23,7 +24,8 @@ $factory->define(Event::class, function (Faker $faker) {
     return [
         'active' => $faker->boolean(90),
         'priority' => $faker->numberBetween(1, 100),
-        'title' => $name = "{$faker->randomElement($titlePre)} {$faker->randomElement($titleSuf)}",
+        'title' => $title = "{$faker->randomElement($titlePre)} {$faker->randomElement($titleSuf)}",
+        'slug' => Str::slug($title),
         'long_desc' => $faker->realText(rand(70, 100)),
         'short_desc' => $faker->realText(rand(10, 30)),
         'start_date' => $faker->dateTimeBetween($startDate = 'now', $endDate = '+2 months'),
