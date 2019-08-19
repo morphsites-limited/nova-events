@@ -13,6 +13,7 @@ use Dewsign\NovaEvents\Nova\Event;
 use Dewsign\NovaEvents\Nova\EventSlot;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Maxfactor\Support\Webpage\Nova\MetaAttributes;
 
 class EventOrganiser extends Resource
 {
@@ -70,6 +71,8 @@ class EventOrganiser extends Resource
             Text::make('Name')->sortable()->rules('required', 'max:254'),
             Text::make('Website'),
             Text::make('Info'),
+            MetaAttributes::make(),
+
             BelongsToMany::make('Event', 'events', Event::class)->searchable(),
         ];
     }

@@ -14,6 +14,7 @@ use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\HasMany;
 use Dewsign\NovaEvents\Nova\EventSlot;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Maxfactor\Support\Webpage\Nova\MetaAttributes;
 
 class EventLocation extends Resource
 {
@@ -71,6 +72,7 @@ class EventLocation extends Resource
             Text::make('Title')->sortable()->rules('required', 'max:254'),
             Text::make('Description')->hideFromIndex(),
             Text::make('Info Page Link'),
+            MetaAttributes::make(),
 
             HasMany::make('Event', 'events', Event::class),
             HasMany::make('Event Slot', 'eventSlots', EventSlot::class),

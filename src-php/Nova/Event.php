@@ -17,6 +17,7 @@ use Dewsign\NovaEvents\Nova\EventCategory;
 use Dewsign\NovaEvents\Nova\EventLocation;
 use Dewsign\NovaEvents\Nova\EventOrganiser;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Maxfactor\Support\Webpage\Nova\MetaAttributes;
 
 class Event extends Resource
 {
@@ -69,6 +70,7 @@ class Event extends Resource
             Text::make('Image Alt')->rules('nullable'),
             DateTime::make('Start Date')->nullable(),
             DateTime::make('End Date')->nullable()->hideFromIndex(),
+            MetaAttributes::make(),
 
             BelongsTo::make('Event Location', 'location', EventLocation::class)->nullable(),
             HasMany::make('Event Slots', 'eventSlots', EventSlot::class),

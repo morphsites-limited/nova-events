@@ -13,6 +13,7 @@ use Dewsign\NovaEvents\Nova\Event;
 use Dewsign\NovaEvents\Nova\EventSlot;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Maxfactor\Support\Webpage\Nova\MetaAttributes;
 
 class EventCategory extends Resource
 {
@@ -68,6 +69,7 @@ class EventCategory extends Resource
             ID::make()->sortable(),
             Boolean::make('Active')->sortable()->rules('required', 'boolean'),
             Text::make('Title')->sortable()->rules('required', 'max:254'),
+            MetaAttributes::make(),
 
             BelongsToMany::make('Event', 'events', Event::class),
         ];
