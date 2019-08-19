@@ -1,9 +1,9 @@
 <h1>{{ $category->title }}</h1>
 
 <div>
-    <ul>
-        @foreach ($category->events as $event)
-            <li>{{ $event->title }}</li>
-        @endforeach
-    </ul>
+    @foreach ($category->events as $event)
+        <a href="{{ route('events.show', [$event->primaryCategory, $event]) }}">
+            <h2>{{ $event->title }}</h2>
+        </a>
+    @endforeach
 </div>

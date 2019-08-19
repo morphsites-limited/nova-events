@@ -1,7 +1,10 @@
 <div>
     @foreach($events as $event)
         <div>
-            <h2>{{ $event->title }}</h2>
+            <a href="{{ route('events.show', [$event->primaryCategory, $event]) }}">
+                <h2>{{ $event->title }}</h2>
+            </a>
+            <p>Category: <a href="{{ route('events.list', [$event->primaryCategory]) }}">{{ $event->primaryCategory->title }}</a></p>
             <h3>Info</h3>
             <p>{{ $event->long_desc ?? $event->short_desc ?? 'No description.' }}</p>
             <div>

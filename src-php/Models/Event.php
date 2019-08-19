@@ -24,6 +24,11 @@ class Event extends Model
         'end_date',
     ];
 
+    public function getPrimaryCategoryAttribute()
+    {
+        return $this->categories->first();
+    }
+
     public function eventSlots()
     {
         return $this->hasMany(EventSlot::class);
