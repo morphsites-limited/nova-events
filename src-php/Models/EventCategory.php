@@ -3,10 +3,13 @@
 namespace Dewsign\NovaEvents\Models;
 
 use Dewsign\NovaEvents\Models\Event;
+use Maxfactor\Support\Model\Traits\HasActiveState;
 use Maxfactor\Support\Webpage\Model;
 
 class EventCategory extends Model
 {
+    use HasActiveState;
+
     protected $table = 'nova_event_categories';
 
     public function events()
