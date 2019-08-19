@@ -7,11 +7,13 @@ use Dewsign\NovaEvents\Models\EventSlot;
 use Dewsign\NovaEvents\Models\EventCategory;
 use Dewsign\NovaEvents\Models\EventLocation;
 use Dewsign\NovaEvents\Models\EventOrganiser;
+use Maxfactor\Support\Webpage\Traits\HasSlug;
 use Maxfactor\Support\Model\Traits\HasActiveState;
 use Maxfactor\Support\Webpage\Traits\HasMetaAttributes;
 
 class Event extends Model
 {
+    use HasSlug;
     use HasActiveState;
     use HasMetaAttributes;
 

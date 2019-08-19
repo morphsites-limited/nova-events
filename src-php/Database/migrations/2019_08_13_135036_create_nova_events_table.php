@@ -18,6 +18,7 @@ class CreateNovaEventsTable extends Migration
             $table->active();
             $table->priority();
             $table->string('title');
+            $table->slug();
             $table->text('long_desc')->nullable();
             $table->text('short_desc')->nullable();
             $table->string('image')->nullable();

@@ -2,6 +2,8 @@
 
 namespace Dewsign\NovaEvents\Nova;
 
+use Benjaminhirsch\NovaSlugField\Slug;
+use Benjaminhirsch\NovaSlugField\TextWithSlug;
 use Laravel\Nova\Resource;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
@@ -69,7 +71,8 @@ class EventLocation extends Resource
         return [
             ID::make()->sortable(),
             Boolean::make('Active')->sortable()->rules('required', 'boolean'),
-            Text::make('Title')->sortable()->rules('required', 'max:254'),
+            TextWithSlug::make('Title')->sortable()->rules('required', 'max:254')->slug('slug'),
+            Slug::make('Slug'),
             Text::make('Description')->hideFromIndex(),
             Text::make('Info Page Link'),
             MetaAttributes::make(),

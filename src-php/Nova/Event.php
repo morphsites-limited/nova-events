@@ -2,6 +2,8 @@
 
 namespace Dewsign\NovaEvents\Nova;
 
+use Benjaminhirsch\NovaSlugField\Slug;
+use Benjaminhirsch\NovaSlugField\TextWithSlug;
 use Laravel\Nova\Resource;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
@@ -63,7 +65,8 @@ class Event extends Resource
             ID::make()->sortable(),
             Boolean::make('Active')->sortable()->rules('required', 'boolean'),
             Number::make('Priority')->sortable()->rules('required'),
-            Text::make('Title')->sortable()->rules('required', 'max:254'),
+            TextWithSlug::make('Title')->sortable()->rules('required', 'max:254')->slug('slug'),
+            Slug::make('Slug'),
             Text::make('Description', 'long_desc')->hideFromIndex(),
             Text::make('Short Description', 'short_desc'),
             config('nova-events.images.field')::make('Image')->disk(config('nova-events.images.disk'))->rules('nullable'),

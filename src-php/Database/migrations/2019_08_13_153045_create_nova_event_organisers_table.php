@@ -17,6 +17,7 @@ class CreateNovaEventOrganisersTable extends Migration
             $table->increments('id');
             $table->active();
             $table->string('name');
+            $table->slug();
             $table->string('website')->nullable();
             $table->text('info');
             $table->meta();
