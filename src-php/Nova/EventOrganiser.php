@@ -40,6 +40,13 @@ class EventOrganiser extends Resource
     ];
 
     /**
+     * The logical group associated with the resource.
+     *
+     * @var string
+     */
+    public static $group = 'Events';
+
+    /**
      * Get the displayable label of the resource
      *
      * @return string
