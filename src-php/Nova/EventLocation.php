@@ -2,20 +2,18 @@
 
 namespace Dewsign\NovaEvents\Nova;
 
-use Benjaminhirsch\NovaSlugField\Slug;
-use Benjaminhirsch\NovaSlugField\TextWithSlug;
 use Laravel\Nova\Resource;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\DateTime;
-use Dewsign\NovaEvents\Nova\Event;
-use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\Textarea;
+use Dewsign\NovaEvents\Nova\Event;
+use Benjaminhirsch\NovaSlugField\Slug;
 use Dewsign\NovaEvents\Nova\EventSlot;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Benjaminhirsch\NovaSlugField\TextWithSlug;
 use Maxfactor\Support\Webpage\Nova\MetaAttributes;
 
 class EventLocation extends Resource
@@ -72,8 +70,8 @@ class EventLocation extends Resource
             ID::make()->sortable(),
             Boolean::make('Active')->sortable()->rules('required', 'boolean'),
             TextWithSlug::make('Title')->sortable()->rules('required', 'max:254')->slug('slug'),
-            Slug::make('Slug'),
-            Text::make('Description')->hideFromIndex(),
+            Slug::make('Slug')->hideFromIndex(),
+            Textarea::make('Description')->hideFromIndex(),
             Text::make('Info Page Link'),
             MetaAttributes::make(),
 

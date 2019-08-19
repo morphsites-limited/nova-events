@@ -2,19 +2,16 @@
 
 namespace Dewsign\NovaEvents\Nova;
 
-use Benjaminhirsch\NovaSlugField\Slug;
-use Benjaminhirsch\NovaSlugField\TextWithSlug;
 use Laravel\Nova\Resource;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\Textarea;
 use Dewsign\NovaEvents\Nova\Event;
-use Dewsign\NovaEvents\Nova\EventSlot;
+use Benjaminhirsch\NovaSlugField\Slug;
 use Laravel\Nova\Fields\BelongsToMany;
-use Laravel\Nova\Http\Requests\NovaRequest;
+use Benjaminhirsch\NovaSlugField\TextWithSlug;
 use Maxfactor\Support\Webpage\Nova\MetaAttributes;
 
 class EventOrganiser extends Resource
@@ -71,9 +68,9 @@ class EventOrganiser extends Resource
             ID::make()->sortable(),
             Boolean::make('Active')->sortable()->rules('required', 'boolean'),
             TextWithSlug::make('Name')->sortable()->rules('required', 'max:254')->slug('slug'),
-            Slug::make('Slug'),
+            Slug::make('Slug')->hideFromIndex(),
             Text::make('Website'),
-            Text::make('Info'),
+            Textarea::make('Info')->hideFromIndex(),
             MetaAttributes::make(),
 
             BelongsToMany::make('Event', 'events', Event::class)->searchable(),

@@ -2,8 +2,6 @@
 
 namespace Dewsign\NovaEvents\Nova;
 
-use Benjaminhirsch\NovaSlugField\Slug;
-use Benjaminhirsch\NovaSlugField\TextWithSlug;
 use Laravel\Nova\Resource;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
@@ -12,13 +10,15 @@ use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\BelongsTo;
+use Benjaminhirsch\NovaSlugField\Slug;
 use Dewsign\NovaEvents\Nova\EventSlot;
 use Laravel\Nova\Fields\BelongsToMany;
 use Dewsign\NovaEvents\Nova\EventCategory;
 use Dewsign\NovaEvents\Nova\EventLocation;
 use Dewsign\NovaEvents\Nova\EventOrganiser;
-use Laravel\Nova\Http\Requests\NovaRequest;
+use Benjaminhirsch\NovaSlugField\TextWithSlug;
 use Maxfactor\Support\Webpage\Nova\MetaAttributes;
 
 class Event extends Resource
@@ -66,16 +66,16 @@ class Event extends Resource
             Boolean::make('Active')->sortable()->rules('required', 'boolean'),
             Number::make('Priority')->sortable()->rules('required'),
             TextWithSlug::make('Title')->sortable()->rules('required', 'max:254')->slug('slug'),
-            Slug::make('Slug'),
-            Text::make('Description', 'long_desc')->hideFromIndex(),
-            Text::make('Short Description', 'short_desc'),
+            Slug::make('Slug')->hideFromIndex(),
+            Textarea::make('Description', 'long_desc')->hideFromIndex(),
+            Textarea::make('Short Description', 'short_desc'),
             config('nova-events.images.field')::make('Image')->disk(config('nova-events.images.disk'))->rules('nullable'),
-            Text::make('Image Alt')->rules('nullable'),
+            Text::make('Image Alt')->rules('nullable')->hideFromIndex(),
             DateTime::make('Start Date')->nullable(),
             DateTime::make('End Date')->nullable()->hideFromIndex(),
             MetaAttributes::make(),
 
-            BelongsTo::make('Event Location', 'location', EventLocation::class)->nullable(),
+            BelongsTo::make('Event Location', 'location', EventLocation::class)->nullable()->hideFromIndex(),
             HasMany::make('Event Slots', 'eventSlots', EventSlot::class),
             BelongsToMany::make('Event Categories', 'categories', EventCategory::class),
             BelongsToMany::make('Event Organiser', 'organisers', EventOrganiser::class),

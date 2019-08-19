@@ -66,7 +66,7 @@ class EventCategory extends Resource
             ID::make()->sortable(),
             Boolean::make('Active')->sortable()->rules('required', 'boolean'),
             TextWithSlug::make('Title')->sortable()->rules('required', 'max:254')->slug('slug'),
-            Slug::make('Slug'),
+            Slug::make('Slug')->hideFromIndex(),
             MetaAttributes::make(),
 
             BelongsToMany::make('Event', 'events', Event::class),
