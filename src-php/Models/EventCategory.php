@@ -18,6 +18,6 @@ class EventCategory extends Model
 
     public function events()
     {
-        return $this->belongsToMany(Event::class, 'nova_event_categories_nova_events', 'nova_event_category_id', 'nova_event_id');
+        return $this->belongsToMany(config('nova-events.models.event', Event::class), 'nova_event_categories_nova_events', 'nova_event_category_id', 'nova_event_id');
     }
 }

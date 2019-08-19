@@ -20,7 +20,7 @@ class EventSlot extends Model
 
     public function event()
     {
-        return $this->belongsTo(Event::class);
+        return $this->belongsTo(config('nova-events.models.event', Event::class));
     }
 
     public function location()

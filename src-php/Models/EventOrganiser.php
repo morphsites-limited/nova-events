@@ -18,6 +18,6 @@ class EventOrganiser extends Model
 
     public function events()
     {
-        return $this->belongsToMany(Event::class, 'nova_event_organisers_nova_events', 'organiser_id', 'nova_event_id');
+        return $this->belongsToMany(config('nova-events.models.event', Event::class), 'nova_event_organisers_nova_events', 'organiser_id', 'nova_event_id');
     }
 }
