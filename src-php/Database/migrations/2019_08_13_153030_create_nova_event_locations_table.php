@@ -24,6 +24,7 @@ class CreateNovaEventLocationsTable extends Migration
             $table->text('title');
             $table->text('description');
             $table->string('info_page_link');
+            $table->meta();
             $table->timestamps();
         });
     }

@@ -6,10 +6,12 @@ use Dewsign\NovaEvents\Models\Event;
 use Maxfactor\Support\Webpage\Model;
 use Dewsign\NovaEvents\Models\EventSlot;
 use Maxfactor\Support\Model\Traits\HasActiveState;
+use Maxfactor\Support\Webpage\Traits\HasMetaAttributes;
 
 class EventLocation extends Model
 {
     use HasActiveState;
+    use HasMetaAttributes;
 
     protected $table = 'nova_event_locations';
 

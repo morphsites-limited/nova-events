@@ -24,6 +24,7 @@ class CreateNovaEventsTable extends Migration
             $table->string('image_alt')->nullable();
             $table->dateTimeTz('start_date');
             $table->dateTimeTz('end_date');
+            $table->meta();
             $table->timestamps();
         });
     }

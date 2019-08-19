@@ -19,6 +19,7 @@ class CreateNovaEventOrganisersTable extends Migration
             $table->string('name');
             $table->string('website')->nullable();
             $table->text('info');
+            $table->meta();
             $table->timestamps();
         });
     }

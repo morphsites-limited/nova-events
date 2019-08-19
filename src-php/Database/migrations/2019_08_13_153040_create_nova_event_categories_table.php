@@ -17,6 +17,7 @@ class CreateNovaEventCategoriesTable extends Migration
             $table->increments('id');
             $table->active();
             $table->text('title');
+            $table->meta();
             $table->timestamps();
         });
     }
