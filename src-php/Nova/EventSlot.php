@@ -15,6 +15,8 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 class EventSlot extends Resource
 {
+    public static $displayInNavigation = false;
+
     /**
      * The model the resource corresponds to.
      *
