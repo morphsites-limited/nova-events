@@ -16,7 +16,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = app(config('nova-events.models.event', Event::class))::active()->has('categories')->orderBy('start_date', 'desc')->get();
+        $events = app(config('nova-events.models.event', Event::class))::active()->isOngoing()->has('categories')->orderBy('start_date', 'desc')->get();
         $categories = app(config('nova-events.models.category', EventCategory::class))::active()->has('events')->get();
 
         return View::first([
@@ -25,6 +25,24 @@ class EventController extends Controller
         ])
         ->with('events', $events)
         ->with('categories', $categories);
+    }
+
+    /**
+     * Show all archived events
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function archive()
+    {
+        $events = app(config('nova-events.models.event', Event::class))::active()->hasEnded()->has('categories')->orderBy('start_date', 'desc')->get();
+        $categories = app(config('nova-events.models.category', EventCategory::class))::active()->has('events')->get();
+
+        return View::first([
+            'events.archive',
+            'nova-events::index',
+        ])
+            ->with('events', $events)
+            ->with('categories', $categories);
     }
 
     public function list(string $category)

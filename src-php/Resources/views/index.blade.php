@@ -20,6 +20,5 @@
                 <p>{{ $event->location->title }}</p>
             </div>
         </div>
-
     @endforeach
 </div>

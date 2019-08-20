@@ -24,6 +24,28 @@ class Event extends Model
         'end_date',
     ];
 
+    /**
+     * Get only ongoing events
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeIsOngoing($query)
+    {
+        return $query->where('end_date', '>=', date('Y-m-d'));
+    }
+
+    /**
+     * Get only events that have ended
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeHasEnded($query)
+    {
+        return $query->where('end_date', '<=', date('Y-m-d'));
+    }
+
     public function getPrimaryCategoryAttribute()
     {
         return $this->categories->first();
