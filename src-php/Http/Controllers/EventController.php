@@ -30,12 +30,14 @@ class EventController extends Controller
     public function list(string $category)
     {
         $category = app(config('nova-events.models.category', EventCategory::class))::whereSlug($category)->firstOrFail();
+        $categories = app(config('nova-events.models.category', EventCategory::class))::active()->has('events')->get();
 
         return View::first([
             'events.list',
             'nova-events::list',
         ])
         ->with('category', $category)
+        ->with('categories', $categories)
         ->with('page', $category);
     }
 

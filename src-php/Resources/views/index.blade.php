@@ -1,4 +1,7 @@
 <div>
+    @include('nova-events::category-list')
+
+    <h1>Events</h1>
     @foreach($events as $event)
         <div>
             <a href="{{ route('events.show', [$event->primaryCategory, $event]) }}">
