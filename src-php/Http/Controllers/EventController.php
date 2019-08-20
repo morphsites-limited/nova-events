@@ -69,7 +69,7 @@ class EventController extends Controller
             ->firstOrFail();
 
         return View::first([
-            'events.show',
+            $event->template ? "nova-events::templates.{$event->template}" : null,
             'nova-events::show',
         ])
         ->with('category', $category)
