@@ -7,10 +7,12 @@ use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Textarea;
+use Dewsign\NovaEvents\NovaEvents;
 use Laravel\Nova\Fields\BelongsTo;
 use Benjaminhirsch\NovaSlugField\Slug;
 use Dewsign\NovaEvents\Nova\EventSlot;
@@ -63,6 +65,7 @@ class Event extends Resource
     {
         return [
             ID::make()->sortable(),
+            $this->templateOptions(),
             Boolean::make('Active')->sortable()->rules('required', 'boolean'),
             Number::make('Priority')->sortable()->rules('required'),
             TextWithSlug::make('Title')->sortable()->rules('required', 'max:254')->slug('slug'),
@@ -80,6 +83,20 @@ class Event extends Resource
             BelongsToMany::make('Event Categories', 'categories', EventCategory::class),
             BelongsToMany::make('Event Organiser', 'organisers', EventOrganiser::class),
         ];
+    }
+
+    private function templateOptions()
+    {
+        $options = NovaEvents::availableTemplates();
+        if (count($options) <= 1) {
+            return $this->merge([]);
+        }
+        return $this->merge([
+            Select::make('Template')
+                ->options($options)
+                ->displayUsingLabels()
+                ->hideFromIndex()
+        ]);
     }
 
     /**
