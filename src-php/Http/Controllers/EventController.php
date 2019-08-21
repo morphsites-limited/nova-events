@@ -2,10 +2,13 @@
 
 namespace Dewsign\NovaEvents\Http\Controllers;
 
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Dewsign\NovaEvents\Models\Event;
 use Illuminate\Support\Facades\View;
 use Dewsign\NovaEvents\Models\EventCategory;
+
 
 class EventController extends Controller
 {
@@ -57,6 +60,26 @@ class EventController extends Controller
         ->with('category', $category)
         ->with('categories', $categories)
         ->with('page', $category);
+    }
+
+    public function byDate(Request $request)
+    {
+        $date = Carbon::parse($request->query('date'));
+        $events = app(config('nova-events.models.event', Event::class))::active()->has('categories')->orderBy('start_date', 'desc')->get();
+        $categories = app(config('nova-events.models.category', EventCategory::class))::active()->has('events')->get();
+        
+        $events = $events->filter(function ($value) use ($date) {
+            if ($value->start_date->startOfDay()->lte($date) && $value->end_date->startOfDay()->gte($date)) {
+                return $value;
+            }
+        });
+
+        return View::first([
+            'events.by-date',
+            'nova-events::by-date',
+        ])
+        ->with('events', $events)
+        ->with('categories', $categories);
     }
 
     public function show(string $category, string $event)

@@ -2,6 +2,11 @@
     @include('nova-events::category-list')
 
     <h1>Events</h1>
+    <h4>Filter by date:</h4>
+    <form action="/events/by-date" method="GET">
+        <input name="date" id="date" type="date">
+        <button type="submit">Filter</button>
+    </form>
     @foreach($events as $event)
         <div>
             <a href="{{ route('events.show', [$event->primaryCategory, $event]) }}">
