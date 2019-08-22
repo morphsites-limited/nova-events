@@ -14,7 +14,7 @@ php artisan migrate
 
 ## Templates
 
-This package doesn't come with any pre-made templates. Simply replace the published views.
+This package doesn't come with any pre-made templates. Simply replace the published `resources/view/vendor/nova-events/show.blade.php` view, or create new templates inside the `resources/view/vendor/nova-events/templates` folder. When more than one template exists, a select option will be displayed on within nova where you can select the template for the event.
 
 ## Configuration
 
