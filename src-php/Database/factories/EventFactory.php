@@ -28,7 +28,5 @@ $factory->define(Event::class, function (Faker $faker) {
         'slug' => Str::slug($title),
         'long_desc' => $faker->realText(rand(70, 100)),
         'short_desc' => $faker->realText(rand(10, 30)),
-        'start_date' => $faker->dateTimeBetween($startDate = 'now', $endDate = '+2 months'),
-        'end_date' => $faker->dateTimeBetween($startDate = '+2 months', $endDate = '+4 months'),
     ];
 });

@@ -7,6 +7,7 @@
         <input name="date" id="date" type="date">
         <button type="submit">Filter</button>
     </form>
+
     @foreach($events as $event)
     <div>
         <a href="{{ route('events.show', [$event->primaryCategory, $event]) }}">
@@ -24,7 +25,9 @@
         </div>
         <div>
             <h3>Where?</h3>
-            <p>{{ $event->location->title }}</p>
+            @foreach ($event->locations->unique() as $location)
+                <p>{{ $location->title }}</p>
+            @endforeach
         </div>
     </div>
     @endforeach

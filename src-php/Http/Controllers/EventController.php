@@ -19,7 +19,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = app(config('nova-events.models.event', Event::class))::active()->isOngoing()->has('categories')->orderBy('start_date', 'desc')->get();
+        $events = app(config('nova-events.models.event', Event::class))::withComputedDates()->active()->isOngoing()->has('categories')->get();
         $categories = app(config('nova-events.models.category', EventCategory::class))::active()->has('events')->get();
 
         return View::first([
@@ -37,7 +37,7 @@ class EventController extends Controller
      */
     public function archive()
     {
-        $events = app(config('nova-events.models.event', Event::class))::active()->hasEnded()->has('categories')->orderBy('start_date', 'desc')->get();
+        $events = app(config('nova-events.models.event', Event::class))::withComputedDates()->active()->hasEnded()->has('categories')->orderBy('start_date', 'desc')->get();
         $categories = app(config('nova-events.models.category', EventCategory::class))::active()->has('events')->get();
 
         return View::first([
@@ -65,11 +65,11 @@ class EventController extends Controller
     public function byDate(Request $request)
     {
         $date = Carbon::parse($request->query('date'));
-        $events = app(config('nova-events.models.event', Event::class))::active()->has('categories')->orderBy('start_date', 'desc')->get();
+        $events = app(config('nova-events.models.event', Event::class))::withComputedDates()->active()->isOngoing()->has('categories')->get();
         $categories = app(config('nova-events.models.category', EventCategory::class))::active()->has('events')->get();
-        
+
         $events = $events->filter(function ($value) use ($date) {
-            if ($value->start_date->startOfDay()->lte($date) && $value->end_date->startOfDay()->gte($date)) {
+            if ($value->start_date->lte($date) && $value->end_date->gte($date)) {
                 return $value;
             }
         });

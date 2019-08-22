@@ -8,6 +8,7 @@
         <button type="submit">Filter</button>
     </form>
     @foreach($events as $event)
+        <h1>{{ $event->slot_start_date }}</h1>
         <div>
             <a href="{{ route('events.show', [$event->primaryCategory, $event]) }}">
                 <h2>{{ $event->title }}</h2>
@@ -17,12 +18,14 @@
             <p>{{ $event->long_desc ?? $event->short_desc ?? 'No description.' }}</p>
             <div>
                 <h3>When?</h3>
-                <p>From: {{ $event->start_date->format('d/m/Y') }}</p>
-                <p>To: {{ $event->end_date->format('d/m/Y') }}</p>
+                <p>From: {{ $event->start_date }}</p>
+                <p>To: {{ $event->end_date }}</p>
             </div>
             <div>
                 <h3>Where?</h3>
-                <p>{{ $event->location->title }}</p>
+                @foreach ($event->locations->unique() as $location)
+                    <p>{{ $location->title }}</p>
+                @endforeach
             </div>
         </div>
     @endforeach

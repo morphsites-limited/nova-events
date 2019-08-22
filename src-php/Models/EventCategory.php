@@ -20,4 +20,9 @@ class EventCategory extends Model
     {
         return $this->belongsToMany(config('nova-events.models.event', Event::class), 'nova_event_categories_nova_events', 'nova_event_category_id', 'nova_event_id');
     }
+
+    public function getActiveEventsWithDatesAttribute()
+    {
+        return $this->events()->withComputedDates()->active()->get();
+    }
 }

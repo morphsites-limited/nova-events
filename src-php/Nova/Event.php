@@ -74,11 +74,8 @@ class Event extends Resource
             Textarea::make('Short Description', 'short_desc'),
             config('nova-events.images.field')::make('Image')->disk(config('nova-events.images.disk'))->rules('nullable'),
             Text::make('Image Alt')->rules('nullable')->hideFromIndex(),
-            DateTime::make('Start Date')->nullable(),
-            DateTime::make('End Date')->nullable()->hideFromIndex(),
             MetaAttributes::make(),
 
-            BelongsTo::make('Event Location', 'location', EventLocation::class)->nullable()->hideFromIndex(),
             HasMany::make('Event Slots', 'eventSlots', EventSlot::class),
             BelongsToMany::make('Event Categories', 'categories', EventCategory::class),
             BelongsToMany::make('Event Organiser', 'organisers', EventOrganiser::class),

@@ -25,7 +25,6 @@ class EventSeeder extends Seeder
         factory(EventCategory::class, 5)->create();
 
         Event::all()->each(function ($event) {
-            $event->event_location_id = EventLocation::inRandomOrder()->first()->id;
             $event->categories()->attach(EventCategory::inRandomOrder()->take(rand(1, 3))->get());
             $event->organisers()->attach(EventOrganiser::inRandomOrder()->take(rand(1, 3))->get());
             $event->save();

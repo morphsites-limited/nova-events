@@ -32,7 +32,9 @@ class Event extends Model
      */
     public function scopeIsOngoing($query)
     {
-        return $query->where('end_date', '>=', date('Y-m-d'));
+        return $query->whereHas('eventSlots', function ($q) {
+                return $q->where('end_date', '>=', date('Y-m-d'))->where('start_date', '<=', date('Y-m-d'));
+            });
     }
 
     /**
@@ -43,7 +45,20 @@ class Event extends Model
      */
     public function scopeHasEnded($query)
     {
-        return $query->where('end_date', '<=', date('Y-m-d'));
+        return $query->whereHas('eventSlots', function ($q) {
+            return $q->where('end_date', '<=', date('Y-m-d'));
+        });
+    }
+
+    public function scopeWithComputedDates($query)
+    {
+        $query->addSubSelect('start_date', EventSlot::select('start_date')
+            ->whereColumn('event_id', 'nova_events.id')
+            ->orderBy('start_date', 'asc'))
+            ->addSubSelect('end_date', EventSlot::select('end_date')
+            ->whereColumn('event_id', 'nova_events.id')
+            ->orderBy('end_date', 'desc'))
+            ->with('eventSlots');
     }
 
     public function getPrimaryCategoryAttribute()
@@ -56,9 +71,9 @@ class Event extends Model
         return $this->hasMany(EventSlot::class);
     }
 
-    public function location()
+    public function locations()
     {
-        return $this->belongsTo(EventLocation::class, 'event_location_id', 'id');
+        return $this->hasManyThrough(EventLocation::class, EventSlot::class, 'event_id', 'id', 'id', 'event_location_id');
     }
 
     public function categories()

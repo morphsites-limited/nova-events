@@ -17,11 +17,6 @@ class EventLocation extends Model
 
     protected $table = 'nova_event_locations';
 
-    public function events()
-    {
-        return $this->hasMany(config('nova-events.models.event', Event::class), 'event_location_id', 'id');
-    }
-
     public function eventSlots()
     {
         return $this->hasMany(EventSlot::class, 'event_location_id', 'id');

@@ -2,7 +2,7 @@
     @include('nova-events::category-list')
 
     <h1>Events: {{ $category->title }}</h1>
-    @foreach($category->events as $event)
+    @foreach($category->activeEventsWithDates as $event)
         <div>
             <a href="{{ route('events.show', [$event->primaryCategory, $event]) }}">
                 <h2>{{ $event->title }}</h2>
@@ -19,7 +19,9 @@
             </div>
             <div>
                 <h3>Where?</h3>
-                <p>{{ $event->location->title }}</p>
+                @foreach ($event->locations->unique() as $location)
+                    <p>{{ $location->title }}</p>
+                @endforeach
             </div>
         </div>
     @endforeach

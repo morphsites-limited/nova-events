@@ -74,8 +74,7 @@ class EventLocation extends Resource
             Textarea::make('Description')->hideFromIndex(),
             Text::make('Info Page Link'),
             MetaAttributes::make(),
-
-            HasMany::make('Event', 'events', Event::class),
+            
             HasMany::make('Event Slot', 'eventSlots', EventSlot::class),
         ];
     }
