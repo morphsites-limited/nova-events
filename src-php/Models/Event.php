@@ -9,6 +9,7 @@ use Dewsign\NovaEvents\Models\EventLocation;
 use Dewsign\NovaEvents\Models\EventOrganiser;
 use Maxfactor\Support\Webpage\Traits\HasSlug;
 use Maxfactor\Support\Model\Traits\HasActiveState;
+use Maxfactor\Support\Model\Traits\WithPrioritisation;
 use Maxfactor\Support\Webpage\Traits\HasMetaAttributes;
 
 class Event extends Model
@@ -16,6 +17,7 @@ class Event extends Model
     use HasSlug;
     use HasActiveState;
     use HasMetaAttributes;
+    use WithPrioritisation;
 
     protected $table = 'nova_events';
 
