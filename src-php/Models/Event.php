@@ -2,6 +2,7 @@
 
 namespace Dewsign\NovaEvents\Models;
 
+use Illuminate\Support\Carbon;
 use Maxfactor\Support\Webpage\Model;
 use Dewsign\NovaEvents\Models\EventSlot;
 use Dewsign\NovaEvents\Models\EventCategory;
