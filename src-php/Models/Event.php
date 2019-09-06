@@ -63,6 +63,18 @@ class Event extends Model
             ->with('eventSlots');
     }
 
+    // Return a formatted string to display an 'at a glance' date. (e.g. From 20 Oct, On 3rd March)
+    public function getQuickDate()
+    {
+        if ($this->start_date->diffInDays($this->end_date) === 0) {
+            return 'On ' . $this->start_date->format('j M');
+        } else if ($this->start_date->gt(Carbon::now())) {
+            return 'From ' . $this->start_date->format('j M');
+        } else {
+            return 'Until ' . $this->end_date->format('j M');
+        }
+    }
+
     public function getPrimaryCategoryAttribute()
     {
         return $this->categories->first();
