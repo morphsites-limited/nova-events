@@ -26,6 +26,8 @@ $factory->define(Event::class, function (Faker $faker) {
         'priority' => $faker->numberBetween(1, 100),
         'title' => $title = "{$faker->unique()->randomElement($titlePre)} {$faker->unique()->randomElement($titleSuf)}",
         'slug' => Str::slug($title),
+        'image' => $faker->imageUrl($width = 640, $height = 480),
+        'image_alt' => $title,
         'long_desc' => $faker->realText(rand(70, 100)),
         'short_desc' => $faker->realText(rand(10, 30)),
     ];
