@@ -19,8 +19,12 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = app(config('nova-events.models.event', Event::class))::withComputedDates()->active()->isOngoing()->has('categories')->get();
+        $events = app(config('nova-events.models.event', Event::class))::withComputedDates()->active()->has('categories')->get();
         $categories = app(config('nova-events.models.category', EventCategory::class))::active()->has('events')->get();
+
+        $events = $events->filter(function ($value, $key) {
+            return $value->end_date->gt(Carbon::now());
+        });
 
         return View::first([
             'events.index',
