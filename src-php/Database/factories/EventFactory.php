@@ -4,7 +4,7 @@ use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 use Dewsign\NovaEvents\Models\Event;
 
-$factory->define(Event::class, function (Faker $faker) {
+$factory->define(config('nova-events.models.event', Event::class), function (Faker $faker) {
     $titlePre = [
         'County',
         'Family',

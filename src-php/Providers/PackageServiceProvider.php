@@ -10,6 +10,9 @@ use Illuminate\Support\ServiceProvider;
 use Dewsign\NovaEvents\Nova\EventCategory;
 use Dewsign\NovaEvents\Nova\EventLocation;
 use Dewsign\NovaEvents\Nova\EventOrganiser;
+use Dewsign\NovaEvents\Models\Event as EventModel;
+use Illuminate\Database\Eloquent\Relations\Relation;
+use Dewsign\NovaEvents\Models\EventCategory as EventCategoryModel;
 
 class PackageServiceProvider extends ServiceProvider
 {
@@ -26,6 +29,7 @@ class PackageServiceProvider extends ServiceProvider
         $this->bootCommands();
         $this->publishDatabaseFiles();
         $this->registerWebRoutes();
+        $this->registerMorphMaps();
         // $this->registerMiddleware();
     }
 
@@ -140,6 +144,19 @@ class PackageServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../Database/seeds' => base_path('database/seeds')
         ], 'seeds');
+    }
+
+    /**
+     * Register the Mophmaps
+     *
+     * @return void
+     */
+    private function registerMorphmaps()
+    {
+        Relation::morphMap([
+            'nova-events.event' => config('nova-events.models.event', EventModel::class),
+            'nova-events.category' => config('nova-events.models.category', EventCategoryModel::class),
+        ]);
     }
 
     /**

@@ -4,7 +4,7 @@ use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 use Dewsign\NovaEvents\Models\EventCategory;
 
-$factory->define(EventCategory::class, function (Faker $faker) {
+$factory->define(config('nova-events.models.category', EventCategory::class), function (Faker $faker) {
     $categories = [
         'Family Friendly',
         'Late Night',

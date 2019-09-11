@@ -77,7 +77,7 @@ class EventSlot extends Resource
             DateTime::make('Start Date')->nullable(),
             DateTime::make('End Date')->nullable()->hideFromIndex(),
             BelongsTo::make('Event Location', 'location', EventLocation::class)->nullable(),
-            BelongsTo::make('Event', 'event', Event::class),
+            BelongsTo::make('Event', 'event', config('nova-events.resources.event', Event::class)),
         ];
     }
 
