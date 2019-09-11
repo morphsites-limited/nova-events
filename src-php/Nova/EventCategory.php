@@ -69,7 +69,7 @@ class EventCategory extends Resource
             Slug::make('Slug')->hideFromIndex(),
             MetaAttributes::make(),
 
-            BelongsToMany::make('Event', 'events', Event::class),
+            BelongsToMany::make('Event', 'events', config('nova-events.resources.event', )),
         ];
     }
 

@@ -18,14 +18,14 @@ class EventSeeder extends Seeder
      */
     public function run()
     {
-        factory(Event::class, 6)->create();
+        factory(config('nova-events.models.event', Event::class), 6)->create();
         factory(EventLocation::class, 5)->create();
         factory(EventSlot::class, 15)->create();
         factory(EventOrganiser::class, 4)->create();
-        factory(EventCategory::class, 5)->create();
+        factory(config('nova-events.models.category', EventCategory::class), 5)->create();
 
-        Event::all()->each(function ($event) {
-            $event->categories()->attach(EventCategory::inRandomOrder()->take(rand(1, 3))->get());
+        config('nova-events.models.event', Event::class)::all()->each(function ($event) {
+            $event->categories()->attach(config('nova-events.models.category', EventCategory::class)::inRandomOrder()->take(rand(1, 3))->get());
             $event->organisers()->attach(EventOrganiser::inRandomOrder()->take(rand(1, 3))->get());
             $event->save();
         });

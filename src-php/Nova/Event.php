@@ -77,7 +77,7 @@ class Event extends Resource
             MetaAttributes::make(),
 
             HasMany::make('Event Slots', 'eventSlots', EventSlot::class),
-            BelongsToMany::make('Event Categories', 'categories', EventCategory::class),
+            BelongsToMany::make('Event Categories', 'categories', config('nova-events.resources.category', EventCategory::class)),
             BelongsToMany::make('Event Organiser', 'organisers', EventOrganiser::class),
         ];
     }
