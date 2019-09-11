@@ -11,6 +11,7 @@ use Dewsign\NovaEvents\Nova\EventCategory;
 use Dewsign\NovaEvents\Nova\EventLocation;
 use Dewsign\NovaEvents\Nova\EventOrganiser;
 use Dewsign\NovaEvents\Models\Event as EventModel;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Dewsign\NovaEvents\Models\EventCategory as EventCategoryModel;
 
 class PackageServiceProvider extends ServiceProvider
