@@ -73,7 +73,7 @@ class EventOrganiser extends Resource
             Textarea::make('Info')->hideFromIndex(),
             MetaAttributes::make(),
 
-            BelongsToMany::make('Event', 'events', )->searchable(),
+            BelongsToMany::make('Event', 'events', config('nova-events.resources.event', Event::class))->searchable(),
         ];
     }
 
