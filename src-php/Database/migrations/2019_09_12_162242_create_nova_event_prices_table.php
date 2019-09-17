@@ -21,6 +21,7 @@ class CreateNovaEventPricesTable extends Migration
             
             $table->active();
             $table->string('title');
+            $table->string('price');
             $table->timestamps();
         });
     }
