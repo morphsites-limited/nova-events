@@ -10,15 +10,13 @@ use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\HasMany;
-use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Textarea;
 use Dewsign\NovaEvents\NovaEvents;
-use Laravel\Nova\Fields\BelongsTo;
 use Benjaminhirsch\NovaSlugField\Slug;
 use Dewsign\NovaEvents\Nova\EventSlot;
 use Laravel\Nova\Fields\BelongsToMany;
+use Dewsign\NovaEvents\Nova\EventPrice;
 use Dewsign\NovaEvents\Nova\EventCategory;
-use Dewsign\NovaEvents\Nova\EventLocation;
 use Dewsign\NovaEvents\Nova\EventOrganiser;
 use Benjaminhirsch\NovaSlugField\TextWithSlug;
 use Maxfactor\Support\Webpage\Nova\MetaAttributes;
@@ -77,6 +75,7 @@ class Event extends Resource
             MetaAttributes::make(),
 
             HasMany::make('Event Slots', 'eventSlots', EventSlot::class),
+            HasMany::make('Event Prices', 'eventPrices', EventPrice::class),
             BelongsToMany::make('Event Categories', 'categories', config('nova-events.resources.category', EventCategory::class)),
             BelongsToMany::make('Event Organiser', 'organisers', EventOrganiser::class),
         ];

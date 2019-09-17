@@ -5,6 +5,7 @@ namespace Dewsign\NovaEvents\Models;
 use Illuminate\Support\Carbon;
 use Maxfactor\Support\Webpage\Model;
 use Dewsign\NovaEvents\Models\EventSlot;
+use Dewsign\NovaEvents\Models\EventPrice;
 use Dewsign\NovaEvents\Models\EventCategory;
 use Dewsign\NovaEvents\Models\EventLocation;
 use Dewsign\NovaEvents\Models\EventOrganiser;
@@ -84,6 +85,11 @@ class Event extends Model
     public function eventSlots()
     {
         return $this->hasMany(EventSlot::class);
+    }
+
+    public function eventPrices()
+    {
+        return $this->hasMany(EventPrice::class);
     }
 
     public function locations()
