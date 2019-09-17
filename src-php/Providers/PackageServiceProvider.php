@@ -43,6 +43,7 @@ class PackageServiceProvider extends ServiceProvider
         Nova::resources([
             Event::class,
             EventSlot::class,
+            EventPrice::class,
             EventCategory::class,
             EventLocation::class,
             EventOrganiser::class,
