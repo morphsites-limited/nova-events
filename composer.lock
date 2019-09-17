@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e96a1be3c39a60ad15cf5351f9c323a2",
+    "content-hash": "8429bc8606cd9c0ad9631ed00404d41c",
     "packages": [
         {
             "name": "benjaminhirsch/nova-slug-field",
@@ -162,6 +162,48 @@
                 "video"
             ],
             "time": "2019-05-08T00:36:52+00:00"
+        },
+        {
+            "name": "dewsign/nova-field-sortable",
+            "version": "v0.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dewsign/nova-field-sortable.git",
+                "reference": "3719930a98e62d4d4ce0ae66d1b2fa1484f2079b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dewsign/nova-field-sortable/zipball/3719930a98e62d4d4ce0ae66d1b2fa1484f2079b",
+                "reference": "3719930a98e62d4d4ce0ae66d1b2fa1484f2079b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0",
+                "spatie/eloquent-sortable": "^3.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Dewsign\\NovaFieldSortable\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Dewsign\\NovaFieldSortable\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2018-10-19T10:45:57+00:00"
         },
         {
             "name": "doctrine/cache",
@@ -680,6 +722,56 @@
                 "parser"
             ],
             "time": "2019-03-17T18:48:37+00:00"
+        },
+        {
+            "name": "gkermer/nova-text-auto-complete",
+            "version": "0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gkermer/nova-text-auto-complete.git",
+                "reference": "c1dba7c3a672ddd6c57982537fe6405116c44647"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gkermer/nova-text-auto-complete/zipball/c1dba7c3a672ddd6c57982537fe6405116c44647",
+                "reference": "c1dba7c3a672ddd6c57982537fe6405116c44647",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Gkermer\\TextAutoComplete\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Gkermer\\TextAutoComplete\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gabriel Kermer",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel Nova text autocomplete field.",
+            "keywords": [
+                "auto-complete",
+                "autocomplete",
+                "laravel",
+                "nova",
+                "text"
+            ],
+            "time": "2019-01-15T10:01:15+00:00"
         },
         {
             "name": "ibericode/vat",
@@ -1708,6 +1800,56 @@
                 "macro"
             ],
             "time": "2018-11-23T20:30:53+00:00"
+        },
+        {
+            "name": "spatie/eloquent-sortable",
+            "version": "3.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/eloquent-sortable.git",
+                "reference": "0eb944f90dd88756f93d916bf387e232190a7acf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/eloquent-sortable/zipball/0eb944f90dd88756f93d916bf387e232190a7acf",
+                "reference": "0eb944f90dd88756f93d916bf387e232190a7acf",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "~5.8.0|^6.0",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~3.8.0|^4.0",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\EloquentSortable\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be"
+                }
+            ],
+            "description": "Sortable behaviour for eloquent models",
+            "homepage": "https://github.com/spatie/eloquent-sortable",
+            "keywords": [
+                "behaviour",
+                "eloquent",
+                "laravel",
+                "model",
+                "sort",
+                "sortable"
+            ],
+            "time": "2019-09-04T10:53:31+00:00"
         },
         {
             "name": "spatie/laravel-view-components",

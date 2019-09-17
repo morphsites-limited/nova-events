@@ -6,6 +6,7 @@ use Laravel\Nova\Nova;
 use Illuminate\Routing\Router;
 use Dewsign\NovaEvents\Nova\Event;
 use Dewsign\NovaEvents\Nova\EventSlot;
+use Dewsign\NovaEvents\Nova\EventPrice;
 use Illuminate\Support\ServiceProvider;
 use Dewsign\NovaEvents\Nova\EventCategory;
 use Dewsign\NovaEvents\Nova\EventLocation;
@@ -43,6 +44,7 @@ class PackageServiceProvider extends ServiceProvider
         Nova::resources([
             Event::class,
             EventSlot::class,
+            EventPrice::class,
             EventCategory::class,
             EventLocation::class,
             EventOrganiser::class,
