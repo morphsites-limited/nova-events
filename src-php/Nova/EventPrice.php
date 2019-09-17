@@ -66,8 +66,7 @@ class EventPrice extends Resource
     {
         $unique_titles = EventPriceModel::all()->unique('title');
         return [
-            Sortable::make('Sort', 'id'),
-            ID::make(),
+            ID::make()->sortable(),
             Boolean::make('Active')->sortable()->rules('required', 'boolean'),
             TextAutoComplete::make('Title')->items([
                 $unique_titles->toArray(),

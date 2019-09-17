@@ -20,7 +20,6 @@ class CreateNovaEventPricesTable extends Migration
             $table->foreign('event_id')->references('id')->on('nova_events')->onDelete('cascade');
             
             $table->active();
-            $table->sortable();
             $table->string('title');
             $table->timestamps();
         });
