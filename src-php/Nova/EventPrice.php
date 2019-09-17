@@ -64,13 +64,13 @@ class EventPrice extends Resource
      */
     public function fields(Request $request)
     {
-        $unique_titles = EventPriceModel::all()->unique('title');
+        $unique_items = EventPriceModel::all()->unique('title')->map(function ($item, $key) {
+            return $item->title;
+        })->toArray();
         return [
             ID::make()->sortable(),
             Boolean::make('Active')->sortable()->rules('required', 'boolean'),
-            TextAutoComplete::make('Title')->items([
-                $unique_titles->toArray(),
-            ]),
+            TextAutoComplete::make('Title')->items($unique_items),
             Text::make('Price')->sortable()->rules('required', 'max:254'),
             BelongsTo::make('Event', 'event', config('nova-events.resources.event', Event::class)),
         ];
