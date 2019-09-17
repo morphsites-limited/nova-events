@@ -69,11 +69,11 @@ class Event extends Model
     public function getQuickDate()
     {
         if ($this->start_date->diffInDays($this->end_date) === 0) {
-            return 'On ' . $this->start_date->format('j M');
+            return ['when' => 'On', 'day' => $this->start_date->format('j'), 'month' => $this->start_date->format('M')];
         } else if ($this->start_date->gt(Carbon::now())) {
-            return 'From ' . $this->start_date->format('j M');
+            return ['when' => 'From', 'day' => $this->start_date->format('j'), 'month' => $this->start_date->format('M')];
         } else {
-            return 'Until ' . $this->end_date->format('j M');
+            return ['when' => 'Until ', 'day' => $this->end_date->format('j'), 'month' => $this->end_date->format('M')];
         }
     }
 
