@@ -70,9 +70,9 @@ class EventLocation extends Resource
             ID::make()->sortable(),
             Boolean::make('Active')->sortable()->rules('required', 'boolean'),
             TextWithSlug::make('Title')->sortable()->rules('required', 'max:254')->slug('slug'),
-            Slug::make('Slug')->hideFromIndex(),
-            Textarea::make('Description')->hideFromIndex(),
-            Text::make('Info Page Link'),
+            Slug::make('Slug')->rules('require', 'alpha_dash', 'max:254')->hideFromIndex(),
+            Textarea::make('Description')->hideFromIndex()->rules('nullable', 'string'),
+            Text::make('Info Page Link')->rules('nullable', 'string'),
             MetaAttributes::make(),
             
             HasMany::make('Event Slot', 'eventSlots', EventSlot::class),
