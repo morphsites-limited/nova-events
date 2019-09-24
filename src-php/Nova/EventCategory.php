@@ -66,7 +66,7 @@ class EventCategory extends Resource
             ID::make()->sortable(),
             Boolean::make('Active')->sortable()->rules('required', 'boolean'),
             TextWithSlug::make('Title')->sortable()->rules('required', 'max:254')->slug('slug'),
-            Slug::make('Slug')->hideFromIndex(),
+            Slug::make('Slug')->rules('required', 'alpha_dash', 'max:254')->hideFromIndex(),
             MetaAttributes::make(),
 
             BelongsToMany::make('Event', 'events', config('nova-events.resources.event', Event::class)),
