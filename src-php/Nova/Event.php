@@ -68,7 +68,7 @@ class Event extends Resource
             Number::make('Priority')->sortable()->rules('required', 'integer'),
             TextWithSlug::make('Title')->sortable()->rules('required', 'max:254')->slug('slug'),
             Slug::make('Slug')->rules('required', 'alpha_dash', 'max:254')->hideFromIndex(),
-            Textarea::make('Description', 'long_desc')->hideFromIndex(),
+            Markdown::make('Description', 'long_desc')->hideFromIndex(),
             Textarea::make('Short Description', 'short_desc'),
             config('nova-events.images.field')::make('Image')->disk(config('nova-events.images.disk'))->rules('nullable'),
             Text::make('Image Alt')->rules('nullable')->hideFromIndex(),
