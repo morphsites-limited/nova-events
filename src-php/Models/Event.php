@@ -42,6 +42,19 @@ class Event extends Model
     }
 
     /**
+     * Get all events that are either upcoming or are on going.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeUpcomingAndOnGoing($query)
+    {
+        return $query->whereHas('eventSlots', function ($q) {
+            return $q->where('end_date', '>=', date('Y-m-d'));
+        });
+    }
+
+    /**
      * Get only events that have ended
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
