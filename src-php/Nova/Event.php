@@ -10,7 +10,7 @@ use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\HasMany;
-use Laravel\Nova\Fields\Textarea;
+use Laravel\Nova\Fields\Markdown;
 use Dewsign\NovaEvents\NovaEvents;
 use Benjaminhirsch\NovaSlugField\Slug;
 use Dewsign\NovaEvents\Nova\EventSlot;
