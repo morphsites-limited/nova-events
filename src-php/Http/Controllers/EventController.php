@@ -23,7 +23,11 @@ class EventController extends Controller
         $categories = app(config('nova-events.models.category', EventCategory::class))::active()->has('events')->get();
 
         $events = $events->filter(function ($value, $key) {
-            return $value->end_date->gt(Carbon::now());
+            if ($value->end_date) {
+                return $value->end_date->gt(Carbon::now());
+            }
+
+            return false;
         });
 
         return View::first([
