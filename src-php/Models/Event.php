@@ -78,6 +78,20 @@ class Event extends Model
             ->with('eventSlots');
     }
 
+    /**
+     * Check if the this event runs over multiple days.
+     *
+     * @return boolean
+     */
+    public function isMultiDayEvent()
+    {
+        $slotDates = $this->eventSlots->map(function ($item) {
+            return $item->start_date->toDateString();
+        });
+
+        return $slotDates->unique()->values()->count() !== 1;
+    }
+
     // Return a formatted string to display an 'at a glance' date. (e.g. From 20 Oct, On 3rd March)
     public function getQuickDate()
     {
