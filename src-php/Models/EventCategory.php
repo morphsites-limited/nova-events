@@ -23,6 +23,6 @@ class EventCategory extends Model
 
     public function getActiveEventsWithDatesAttribute()
     {
-        return $this->events()->withComputedDates()->active()->get();
+        return $this->events()->withComputedDates()->active()->orderBy('start_date')->get();
     }
 }
