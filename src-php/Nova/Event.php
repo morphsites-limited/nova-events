@@ -75,7 +75,7 @@ class Event extends Resource
             Text::make('Image Alt')->rules('nullable')->hideFromIndex(),
             MetaAttributes::make(),
 
-            HasMany::make('Event Slots', 'eventSlots', EventSlot::class),
+            HasMany::make('Event Slots', 'eventSlots', config('nova-events.resources.event-slot', EventSlot::class)),
             HasMany::make('Event Prices', 'eventPrices', EventPrice::class),
             BelongsToMany::make('Event Categories', 'categories', config('nova-events.resources.category', EventCategory::class)),
             BelongsToMany::make('Event Organiser', 'organisers', EventOrganiser::class),

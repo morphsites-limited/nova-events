@@ -69,10 +69,10 @@ class Event extends Model
 
     public function scopeWithComputedDates($query)
     {
-        $query->addSubSelect('start_date', EventSlot::select('start_date')
+        $query->addSubSelect('start_date', app(config('nova-events.models.event-slot', EventSlot::class))->select('start_date')
             ->whereColumn('event_id', 'nova_events.id')
             ->orderBy('start_date', 'asc'))
-            ->addSubSelect('end_date', EventSlot::select('end_date')
+            ->addSubSelect('end_date', app(config('nova-events.models.event-slot', EventSlot::class))->select('end_date')
             ->whereColumn('event_id', 'nova_events.id')
             ->orderBy('end_date', 'desc'))
             ->with('eventSlots');
@@ -111,7 +111,7 @@ class Event extends Model
 
     public function eventSlots()
     {
-        return $this->hasMany(EventSlot::class);
+        return $this->hasMany(config('nova-events.models.event-slot', EventSlot::class));
     }
 
     public function eventPrices()
@@ -121,7 +121,7 @@ class Event extends Model
 
     public function locations()
     {
-        return $this->hasManyThrough(EventLocation::class, EventSlot::class, 'event_id', 'id', 'id', 'event_location_id');
+        return $this->hasManyThrough(EventLocation::class, config('nova-events.models.event-slot', EventSlot::class), 'event_id', 'id', 'id', 'event_location_id');
     }
 
     public function categories()

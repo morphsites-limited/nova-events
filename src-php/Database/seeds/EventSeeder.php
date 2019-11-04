@@ -20,7 +20,7 @@ class EventSeeder extends Seeder
     {
         factory(config('nova-events.models.event', Event::class), 6)->create();
         factory(EventLocation::class, 5)->create();
-        factory(EventSlot::class, 15)->create();
+        factory(config('nova-events.models.event-slot', EventSlot::class), 15)->create();
         factory(EventOrganiser::class, 4)->create();
         factory(config('nova-events.models.category', EventCategory::class), 5)->create();
 
@@ -30,7 +30,7 @@ class EventSeeder extends Seeder
             $event->save();
         });
 
-        EventSlot::all()->each(function ($eventSlot) {
+        app(config('nova-events.models.event-slot', EventSlot::class))->all()->each(function ($eventSlot) {
             $eventSlot->event_location_id = EventLocation::inRandomOrder()->first()->id;
             $eventSlot->save();
         });

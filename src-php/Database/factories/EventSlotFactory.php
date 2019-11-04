@@ -4,8 +4,8 @@ use Faker\Generator as Faker;
 use Dewsign\NovaEvents\Models\Event;
 use Dewsign\NovaEvents\Models\EventSlot;
 
-$factory->define(EventSlot::class, function (Faker $faker) {
-    $event = Event::inRandomOrder()->first();
+$factory->define(config('nova-events.models.event-slot', EventSlot::class), function (Faker $faker) {
+    $event = app(config('nova-events.models.event', Event::class))->inRandomOrder()->first();
     return [
         'event_id' => $event->id,
         'active' => $faker->boolean(90),

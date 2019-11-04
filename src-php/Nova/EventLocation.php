@@ -75,7 +75,7 @@ class EventLocation extends Resource
             Text::make('Info Page Link')->rules('nullable', 'string'),
             MetaAttributes::make(),
             
-            HasMany::make('Event Slot', 'eventSlots', EventSlot::class),
+            HasMany::make('Event Slot', 'eventSlots', config('nova-events.resources.event-slot', EventSlot::class)),
         ];
     }
 
