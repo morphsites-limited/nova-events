@@ -1,6 +1,6 @@
 {
     "name": "@dewsign/nova-events",
-    "version": "0.12.5",
+    "version": "0.12.6",
     "description": "Boilerplate repository for creating new Laravel or Javascript/Vue NPM packages",
     "main": "dist-js/index.js",
     "scripts": {
