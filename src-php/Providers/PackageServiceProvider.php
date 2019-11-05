@@ -42,10 +42,10 @@ class PackageServiceProvider extends ServiceProvider
     public function register()
     {
         Nova::resources([
-            Event::class,
-            EventSlot::class,
+            config('nova-events.resources.event', Event::class),
+            config('nova-events.resources.event-slot', EventSlot::class),
             EventPrice::class,
-            EventCategory::class,
+            config('nova-events.resources.category', EventCategory::class),
             EventLocation::class,
             EventOrganiser::class,
         ]);
