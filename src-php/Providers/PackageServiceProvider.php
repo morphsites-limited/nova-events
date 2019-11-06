@@ -31,7 +31,7 @@ class PackageServiceProvider extends ServiceProvider
         $this->publishDatabaseFiles();
         $this->registerWebRoutes();
         $this->registerMorphMaps();
-        // $this->registerMiddleware();
+        $this->registerTranslations();
     }
 
     /**
@@ -116,17 +116,6 @@ class PackageServiceProvider extends ServiceProvider
         ], 'js');
     }
 
-    /**
-     * Make middleware available to routes
-     *
-     * @param Router $router
-     * @return void
-     */
-    private function registerMiddleware(Router $router)
-    {
-        // $router->aliasMiddleware('name', MyMiddleware::class);
-    }
-
     private function publishDatabaseFiles()
     {
         $this->loadMigrationsFrom(__DIR__.'/../Database/migrations');
@@ -169,5 +158,10 @@ class PackageServiceProvider extends ServiceProvider
     private function registerWebRoutes()
     {
         $this->loadRoutesFrom(__DIR__.'/../Routes/web.php');
+    }
+
+    private function registerTranslations()
+    {
+        $this->loadJsonTranslationsFrom(__DIR__.'/../Resources/lang', 'novaevents');
     }
 }
