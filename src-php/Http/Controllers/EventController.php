@@ -96,7 +96,6 @@ class EventController extends Controller
         ])
         ->with('category', $category)
         ->with('event', $event)
-        ->with('page', $event)
-        ->whenActive($event);
+        ->with('page', $event);
     }
 }
