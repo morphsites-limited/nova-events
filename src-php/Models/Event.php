@@ -85,11 +85,32 @@ class Event extends Model
      */
     public function isMultiDayEvent()
     {
-        $slotDates = $this->eventSlots->map(function ($item) {
-            return $item->start_date->toDateString();
-        });
+        if ($this->eventSlots->count() === 1) {
+            $slot = $this->eventSlots()->first();
 
-        return $slotDates->unique()->values()->count() !== 1;
+            if ($slot->start_date->isSameDay($slot->end_date)) {
+                return false;
+            }
+
+            return true;
+        }
+
+        return true;
+    }
+
+    public function isOneSlotMultiDay()
+    {
+        if ($this->eventSlots->count() === 1) {
+            $slot = $this->eventSlots()->first();
+
+            if ($slot->start_date->isSameDay($slot->end_date)) {
+                return false;
+            }
+
+            return true;
+        }
+
+        return false;
     }
 
     // Return a formatted string to display an 'at a glance' date. (e.g. From 20 Oct, On 3rd March)
