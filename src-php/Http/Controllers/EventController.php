@@ -58,7 +58,8 @@ class EventController extends Controller
             'nova-events::list',
         ])
         ->with('category', $category)
-        ->with('categories', $categories);
+        ->with('categories', $categories)
+        ->whenActive($category);
     }
 
     public function byDate(Request $request)
@@ -96,6 +97,7 @@ class EventController extends Controller
         ])
         ->with('category', $category)
         ->with('event', $event)
-        ->with('page', $event);
+        ->with('page', $event)
+        ->whenActive($event);
     }
 }

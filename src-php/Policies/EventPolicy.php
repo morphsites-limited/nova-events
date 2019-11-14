@@ -44,12 +44,12 @@ class EventPolicy
         return $user->can('manageEvents', $model);
     }
 
-    public function viewInactive($user, $event)
+    public function viewInactive($user = null, $model)
     {
         if (config('maxfactor-support.canViewInactive')) {
             return true;
         }
-        if ($event->active) {
+        if ($model->active) {
             return true;
         }
         if (Gate::allows('viewNova')) {
