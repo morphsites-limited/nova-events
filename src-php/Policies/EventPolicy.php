@@ -44,7 +44,7 @@ class EventPolicy
         return $user->can('manageEvents', $model);
     }
 
-    public function viewInactive($user, $event)
+    public function viewInactive($user = null, $event)
     {
         if (config('maxfactor-support.canViewInactive')) {
             return true;
