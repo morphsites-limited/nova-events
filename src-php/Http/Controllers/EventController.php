@@ -58,7 +58,8 @@ class EventController extends Controller
             'nova-events::list',
         ])
         ->with('category', $category)
-        ->with('categories', $categories);
+        ->with('categories', $categories)
+        ->whenActive($category);
     }
 
     public function byDate(Request $request)
