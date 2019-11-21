@@ -25,4 +25,23 @@ class EventCategory extends Model
     {
         return $this->events()->upcomingAndOnGoing()->withComputedDates()->active()->orderBy('start_date')->get();
     }
+
+    /**
+     * Add required items to the breadcrumb seed
+     *
+     * @return array
+     */
+    public function seeds()
+    {
+        return array_merge(parent::seeds(), [
+            [
+                'name' => __('Events'),
+                'url' => route('events.index'),
+            ],
+            [
+                'name' => $this->navTitle,
+                'url' => route('events.list', [$this]),
+            ],
+        ]);
+    }
 }

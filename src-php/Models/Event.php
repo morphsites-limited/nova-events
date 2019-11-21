@@ -2,8 +2,10 @@
 
 namespace Dewsign\NovaEvents\Models;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Maxfactor\Support\Webpage\Model;
+use Illuminate\Support\Facades\Route;
 use Dewsign\NovaEvents\Models\EventSlot;
 use Dewsign\NovaEvents\Models\EventPrice;
 use Dewsign\NovaEvents\Models\EventCategory;
@@ -153,5 +155,30 @@ class Event extends Model
     public function organisers()
     {
         return $this->belongsToMany(EventOrganiser::class, 'nova_event_organisers_nova_events', 'nova_event_id', 'organiser_id');
+    }
+
+    /**
+     * Add required items to the breadcrumb seed
+     *
+     * @return array
+     */
+    public function seeds()
+    {
+        $category = config('nova-events.models.category', EventCategory::class)::whereSlug(Route::input('category'))->first();
+
+        return array_merge(parent::seeds(), [
+            [
+                'name' => __('Events'),
+                'url' => route('events.index'),
+            ],
+            [
+                'name' => Arr::get($category ?? $this->primaryCategory, 'navTitle'),
+                'url' => route('events.list', [$category ?? $this->primaryCategory]),
+            ],
+            [
+                'name' => $this->navTitle,
+                'url' => route('events.show', [$category ?? $this->primaryCategory, $this]),
+            ]
+        ]);
     }
 }

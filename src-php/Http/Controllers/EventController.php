@@ -59,6 +59,7 @@ class EventController extends Controller
         ])
         ->with('category', $category)
         ->with('categories', $categories)
+        ->with('page', $category)
         ->whenActive($category);
     }
 
