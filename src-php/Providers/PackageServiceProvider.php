@@ -5,6 +5,7 @@ namespace Dewsign\NovaEvents\Providers;
 use Laravel\Nova\Nova;
 use Illuminate\Routing\Router;
 use Dewsign\NovaEvents\Nova\Event;
+use Illuminate\Support\Facades\App;
 use Dewsign\NovaEvents\Nova\EventSlot;
 use Dewsign\NovaEvents\Nova\EventPrice;
 use Illuminate\Support\ServiceProvider;
@@ -120,9 +121,7 @@ class PackageServiceProvider extends ServiceProvider
     {
         $this->loadMigrationsFrom(__DIR__.'/../Database/migrations');
 
-        $this->app->make('Illuminate\Database\Eloquent\Factory')->load(
-            __DIR__ . '/../Database/factories'
-        );
+        $this->loadFactories();
 
         $this->publishes([
             __DIR__ . '/../Database/factories' => base_path('database/factories')
@@ -135,6 +134,22 @@ class PackageServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../Database/seeds' => base_path('database/seeds')
         ], 'seeds');
+    }
+
+    /**
+     * Only load the factories in non-production ready environments
+     *
+     * @return void
+     */
+    public function loadFactories()
+    {
+        if (App::environment(['production', 'staging'])) {
+            return;
+        }
+
+        $this->app->make('Illuminate\Database\Eloquent\Factory')->load(
+            __DIR__ . '/../Database/factories'
+        );
     }
 
     /**
