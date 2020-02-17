@@ -40,6 +40,7 @@ class EventController extends Controller
         if (!config('nova-events.routes.archive')) {
             return redirect()->route('events.index');
         }
+
         $events = app(config('nova-events.models.event', Event::class))::withComputedDates()->active()->hasEnded()->has('categories')->orderBy('start_date', 'desc')->get();
         $categories = app(config('nova-events.models.category', EventCategory::class))::active()->has('events')->get();
 
