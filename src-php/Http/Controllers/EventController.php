@@ -57,6 +57,7 @@ class EventController extends Controller
             'events.list',
             'nova-events::list',
         ])
+        ->with('events', $category->activeEventsWithDates)
         ->with('category', $category)
         ->with('categories', $categories)
         ->with('page', $category)
@@ -90,6 +91,7 @@ class EventController extends Controller
             ->whereHas('categories', function ($query) use ($category) {
                 $query->where('id', '=', $category->id);
             })
+            ->withComputedDates()
             ->firstOrFail();
 
         return View::first([
