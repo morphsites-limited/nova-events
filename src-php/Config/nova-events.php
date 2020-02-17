@@ -15,4 +15,8 @@ return [
         'event-slot' => 'Dewsign\NovaEvents\Nova\EventSlot',
         'category' => 'Dewsign\NovaEvents\Nova\EventCategory'
     ],
+    'routes' => [
+        'archive' => false,
+        'by-date' => false,
+    ],
 ];

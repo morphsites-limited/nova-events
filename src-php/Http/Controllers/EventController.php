@@ -37,6 +37,9 @@ class EventController extends Controller
      */
     public function archive()
     {
+        if (!config('nova-events.routes.archive')) {
+            return redirect()->route('events.index');
+        }
         $events = app(config('nova-events.models.event', Event::class))::withComputedDates()->active()->hasEnded()->has('categories')->orderBy('start_date', 'desc')->get();
         $categories = app(config('nova-events.models.category', EventCategory::class))::active()->has('events')->get();
 
@@ -66,6 +69,10 @@ class EventController extends Controller
 
     public function byDate(Request $request)
     {
+        if (!config('nova-events.routes.by-date')) {
+            return redirect()->route('events.index');
+        }
+
         $date = Carbon::parse($request->query('date'));
         $events = app(config('nova-events.models.event', Event::class))::withComputedDates()->active()->isOngoing()->has('categories')->get();
         $categories = app(config('nova-events.models.category', EventCategory::class))::active()->has('events')->get();
