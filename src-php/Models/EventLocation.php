@@ -17,7 +17,7 @@ class EventLocation extends Model
 
     protected $table = 'nova_event_locations';
 
-    private $metaDefaults = [
+    protected $metaDefaults = [
         'browser_title' => 'title',
         'h1' => 'title',
         'nav_title' => 'title',

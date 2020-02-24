@@ -30,7 +30,7 @@ class Event extends Model
         'end_date',
     ];
 
-    private $metaDefaults = [
+    protected $metaDefaults = [
         'browser_title' => 'title',
         'h1' => 'title',
         'nav_title' => 'title',
