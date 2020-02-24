@@ -16,6 +16,26 @@ class EventCategory extends Model
 
     protected $table = 'nova_event_categories';
 
+    protected $metaDefaults = [
+        'browser_title' => 'title',
+        'h1' => 'title',
+        'nav_title' => 'title',
+    ];
+
+    protected $appends = [
+        'name',
+    ];
+
+    /**
+     * For meta attributes and repeaters that look for a name field (Hyperlink blocks)
+     *
+     * @return String
+     */
+    public function getNameAttribute()
+    {
+        return $this->title;
+    }
+
     public function events()
     {
         return $this->belongsToMany(config('nova-events.models.event', Event::class), 'nova_event_categories_nova_events', 'nova_event_category_id', 'nova_event_id');
