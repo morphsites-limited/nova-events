@@ -17,6 +17,26 @@ class EventLocation extends Model
 
     protected $table = 'nova_event_locations';
 
+    private $metaDefaults = [
+        'browser_title' => 'title',
+        'h1' => 'title',
+        'nav_title' => 'title',
+    ];
+
+    protected $appends = [
+        'name',
+    ];
+
+    /**
+     * For meta attributes and repeaters that look for a name field (Hyperlink blocks)
+     *
+     * @return String
+     */
+    public function getNameAttribute()
+    {
+        return $this->title;
+    }
+
     public function eventSlots()
     {
         return $this->hasMany(config('nova-events.models.event-slot', EventSlot::class), 'event_location_id', 'id');

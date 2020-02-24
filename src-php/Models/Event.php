@@ -30,6 +30,26 @@ class Event extends Model
         'end_date',
     ];
 
+    private $metaDefaults = [
+        'browser_title' => 'title',
+        'h1' => 'title',
+        'nav_title' => 'title',
+    ];
+
+    protected $appends = [
+        'name',
+    ];
+
+    /**
+     * For meta attributes and repeaters that look for a name field (Hyperlink blocks)
+     *
+     * @return String
+     */
+    public function getNameAttribute()
+    {
+        return $this->title;
+    }
+
     /**
      * Get only ongoing events
      *
