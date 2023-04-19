@@ -16,7 +16,7 @@
         "benjaminhirsch/nova-slug-field": "^1.2",
         "reinink/advanced-eloquent": "^0.2.0",
         "doctrine/dbal": "^2.9",
-        "gkermer/nova-text-auto-complete": "^0.0.2",
+        "gkermer/nova-text-auto-complete": "^0.0.5",
         "dewsign/nova-field-sortable": "^0.2"
     },
     "require-dev": {
